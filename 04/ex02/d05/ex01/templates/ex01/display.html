@@ -1,0 +1,14 @@
+{% extends 'ex01/base.html' %}
+
+{% block title %}
+	Ex01: Display process of a static page.
+{% endblock %}
+
+{% block content %}
+	<p>
+		Client make a request to the webserver (Django).<br><br>
+		Django search for the URL in its urls.py file.<br><br>
+		If it match, Django calls the function in the views.py file. If not, Django returns an error.<br><br>
+		The function from the views.py will get the template file, expand the variables if any, and return the result to the client.<br><br>
+	</p>
+{% endblock %}

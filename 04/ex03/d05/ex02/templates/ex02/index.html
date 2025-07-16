@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Form</title>
+	</head>
+	<body>
+		<h2>Submission History</h2>
+		{% if history %}
+			{% for item in history %}
+				<p>{{ item }}</p>
+			{% endfor %}
+		{% endif %}
+		<h1>Input</h1>
+		<form method="post">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<button type="submit">Submit</button>
+		</form>
+	</body>
+</html>

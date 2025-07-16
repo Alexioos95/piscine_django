@@ -1,0 +1,106 @@
+[
+	{
+		"model": "auth.user",
+		"pk": 1,
+		"fields": {
+			"username": "q",
+			"password": "pbkdf2_sha256$600000$ZXWWODRSGssVu4MaNrYycp$nH8VLbHpY2jS2AWihBw/qjUiz6t3xS8AN/CoynrlipE=",
+			"is_superuser": false,
+			"is_staff": false,
+			"is_active": true
+		}
+	},
+	{
+		"model": "auth.user",
+		"pk": 2,
+		"fields": {
+			"username": "w",
+			"password": "pbkdf2_sha256$600000$NkYk3YmG3wFKaE2eRORn2o$O7dpNvphyCxt6E4j2Pun8ST4rxnNBTuEyX+JqLwLNG8=",
+			"is_superuser": false,
+			"is_staff": false,
+			"is_active": true
+		}
+	},
+	{
+		"model": "auth.user",
+		"pk": 3,
+		"fields": {
+			"username": "e",
+			"password": "pbkdf2_sha256$600000$h1OM5IVOsHini3vBnJYfxJ$vX3q8iygOVDcRj/hkEESH2fe2KG7lG8+DOANfloNkkU=",
+			"is_superuser": false,
+			"is_staff": false,
+			"is_active": true
+		}
+	},
+	{
+		"model": "ex06.article",
+		"pk": 1,
+		"fields": {
+			"title": "A0",
+			"author": 1,
+			"created": "2025-06-01T10:00:00Z",
+			"synopsis": "Blabla-------------------------------------------------",
+			"content": "Lorem ipsum..."
+		}
+	},
+	{
+		"model": "ex06.article",
+		"pk": 2,
+		"fields": {
+			"title": "A1",
+			"author": 1,
+			"created": "2025-06-02T10:00:00Z",
+			"synopsis": "Blabla",
+			"content": "Lorem ipsum..."
+		}
+	},
+	{
+		"model": "ex06.article",
+		"pk": 3,
+		"fields": {
+			"title": "A2",
+			"author": 2,
+			"created": "2025-06-03T10:00:00Z",
+			"synopsis": "Blabla",
+			"content": "Lorem ipsum..."
+		}
+	},
+	{
+		"model": "ex06.article",
+		"pk": 4,
+		"fields": {
+			"title": "A3",
+			"author": 3,
+			"created": "2025-06-04T10:00:00Z",
+			"synopsis": "Blabla",
+			"content": "Lorem ipsum..."
+		}
+	},
+	{
+		"model": "ex06.article",
+		"pk": 5,
+		"fields": {
+			"title": "A4",
+			"author": 2,
+			"created": "2025-06-05T10:00:00Z",
+			"synopsis": "Blabla",
+			"content": "Lorem ipsum..."
+		}
+	},
+	{
+		"model": "ex06.userfavouritearticle",
+		"pk": 1,
+		"fields": {
+			"user": 1,
+			"article": 3
+		}
+	},
+	{
+		"model": "ex06.userfavouritearticle",
+		"pk": 2,
+		"fields": {
+			"user": 1,
+			"article": 5
+		}
+	}
+]

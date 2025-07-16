@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Chat - Room {{ room.name }}</title>
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	</head>
+	<body>
+		<h1>Room: {{ room.name }}</h1>
+		<div id="chat-box" style="height: 300px; overflow-y: scroll; border: 1px solid gray;">
+
+		</div>
+		<input type="text" id="msg-input" placeholder="Type a message...">
+		<button id="send-btn">Send</button>
+
+		<h2>Connected Users</h2>
+		<div style="height: 300px; overflow-y: scroll; border: 1px solid gray;">
+			<ul id="user-list">
+
+			</ul>
+		</div>
+
+		<script>
+			const user = "{{ request.user.username }}";
+			const room = "{{ room.name }}";
+			const socket = new WebSocket("ws://" + window.location.host + "/ws/chat/" + encodeURIComponent(room) + "/");
+
+			socket.onmessage = function (e) {
+				const data = JSON.parse(e.data);
+
+				if (data.type === "chat_message")
+				{
+					$("#chat-box").append("<p>" + data.user + ": " + data.msg + "</p>");
+					$("#chat-box").scrollTop($("#chat-box")[0].scrollHeight);
+				}
+				else if (data.type === "user_list")
+				{
+					$("#user-list").empty();
+
+					data.users.forEach(function (username) {
+						$("#user-list").append("<li>" + username + "</li>");
+					});
+				}
+			};
+
+			$("#send-btn").on("click", function() {
+				const msg = $("#msg-input").val();
+				
+				socket.send(JSON.stringify({
+					"type": "chat_message",
+					"msg": msg,
+					"user": user
+				}));
+				$("#msg-input").val("");
+			});
+		</script>
+	</body>
+</html>

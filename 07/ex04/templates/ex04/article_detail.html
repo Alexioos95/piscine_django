@@ -1,0 +1,40 @@
+{% extends 'ex04/base.html' %}
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block content %}
+<table class="table">
+	<thead class="table-light">
+		<tr>
+			<th>Author</th>
+			<th>Created</th>
+			<th>Synopsis</th>
+			<th>Content</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for article in articles %}
+		<tr>
+			<td>{{ article.title }}</td>
+			<td>{{ article.synopsis|truncatechars:20 }}</td>
+			<td>{{ article.author.username }}</td>
+			<td>{{ article.created }}</td>
+			<td>{{ article.created|timesince }} ago</td>
+			<td><a href="{% url 'ex04:article_detail' article.pk %}" class="btn btn-info btn-sm text-white">Read</a></td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+<h1>{{ article.title }}</h1>
+<p>Author: {{ article.author.username }}</p>
+<p>Created: {{ article.created }}</p>
+<p>Synopsis: {{ article.synopsis }}</p>
+<p>Content: {{ article.content }}</p>
+{% if user.is_authenticated %}
+<form method="post" action="{% url 'ex04:add_favourite' article.pk %}">
+	{% csrf_token %}
+	<button type="submit">Add to favourites</button>
+</form>
+{% endif %}
+{% endblock %}

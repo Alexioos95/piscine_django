@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Life Pro Tips</title>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	</head>
+	<body>
+		<header>
+			<nav>
+			{% if request.session.user_id %}
+				<a href="/ex01">Life Pro Tips</a> |
+				<a href="/ex01/logout">Log out</a>
+				<p>Hello {{ request.session.username }}!</p>
+			{% else %}
+				<a href="/ex01">Life Pro Tips</a> |
+				<a href="/ex01/register">Register</a> |
+				<a href="/ex01/login">Log in</a>
+				<p>Hello Unlogged user!</p>
+			{% endif %}
+			</nav>
+		</header>
+	</body>
+</html>

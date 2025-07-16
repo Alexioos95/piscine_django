@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" style="width: 100%; height: 100%;">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>CV - apayen</title>
+		<style>
+			* {
+				box-sizing: border-box;
+			}
+			body {
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+			.container {
+				display: flex;
+				flex-direction: column;
+				width: 100%;
+				max-width: 425px;
+				height: 80%;
+				margin: auto;
+				background-color: greenyellow;
+			}
+			header {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				height: 10%;
+				width: 100%;
+				color: white;
+				background-color: green;
+				text-align: center;
+			}
+			h1, h2 { margin: 0; }
+			h1 { font-size: 30px; }
+			h2 { font-size: 20px; }
+			main {
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-around;
+				padding: 18px;
+			}
+			table {
+				width: 100%;
+				border-collapse: collapse;
+				background-color: white;
+			}
+			table tr:last-child td:last-child { border: 2px solid #424242; }
+			td { text-align: center; }
+			td, tr, th { border: solid black 1px; }
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<header>
+				<h1>Alexis Payen</h1>
+				<h2>Developpeur Web</h2>
+			</header>
+			<main>
+				<table>
+					<tr>
+						<th scope="col">Techno</th>
+						<th scope="col">Nb Project</th>
+					</tr>
+					<tr>
+						<td>C</td>
+						<td>9</td>
+					</tr>
+					<tr>
+						<td>C++</td>
+						<td>11</td>
+					</tr>
+				</table>
+				<ul>
+					<li>
+						C
+						<ol>
+							<li>Libft</li>
+							<li>GNL</li>
+							<li>Printf</li>
+						</ol>
+					</li>
+					<li>C++
+						<ol>
+							<li>Piscine module 00</li>
+							<li>Piscine module 01</li>
+							<li>Piscine module 02</li>
+						</ol>
+					</li>
+					<li>Virtualisation
+						<ol>
+							<li>B2BR</li>
+							<li>Inception</li>
+						</ol>
+					</li>
+				</ul>
+			</main>
+		</div>
+	</body>
+</html>

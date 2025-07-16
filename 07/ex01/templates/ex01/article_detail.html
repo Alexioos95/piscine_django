@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>{{ article.title }}</title>
+	</head>
+	<body>
+		<nav>
+			<a href="{% url 'ex01:home' %}">Home</a> |
+			<a href="{% url 'ex01:articles' %}">All Articles</a> |
+			{% if user.is_authenticated %}
+			<a href="{% url 'ex01:publications' %}">My Publications</a> |
+			<a href="{% url 'ex01:favourites' %}">Favourites</a> |
+			<a href="{% url 'ex01:logout' %}">Logout</a>
+			{% else %}
+			<a href="{% url 'ex01:login' %}">Login</a>
+			{% endif %}
+		</nav> 
+		<h1>{{ article.title }}</h1>
+		<p>Author: {{ article.author.username }}</p>
+		<p>Created: {{ article.created }}</p>
+		<p>Synopsis: {{ article.synopsis }}</p>
+		<p>Content: {{ article.content }}</p>
+	</body>
+</html>

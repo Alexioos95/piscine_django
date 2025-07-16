@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Life Pro Tips</title>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	</head>
+	<body>
+		<header>
+			<nav>
+			{% if user %}
+				<a href="/ex04/">Life Pro Tips</a> |
+				<a href="/ex04/logout">Log out</a>
+				<p>Hello {{ user }}!</p>
+				<form method="post">
+					{% csrf_token %}
+					{{ form.as_p }}
+					<button type="submit">Post</button>
+				</form>
+			{% else %}
+				<a href="/ex04/">Life Pro Tips</a> |
+				<a href="/ex04/register">Register</a> |
+				<a href="/ex04/login">Log in</a>
+				<p>Hello Unlogged user!</p>
+			{% endif %}
+			</nav>
+			{% for tip in tips %}
+			<div>
+				<p>Author: {{ tip.author.username }} ({{ tip.date }})</p>
+				<p>{{ tip.content }}</p>
+				<p>Upvotes: {{ tip.up_count }} | Downvotes: {{ tip.down_count }}</p>
+				{% if user %}
+					<a href='/ex04/vote/{{ tip.id }}/up'>Add an Upvote</a>
+					<a href='/ex04/vote/{{ tip.id }}/down'>Add a Downvote</a>
+					<a href='/ex04/delete/{{ tip.id }}'>Delete Tip</a>
+				{% endif %}
+			</div>
+			{% endfor %}
+		</header>
+	</body>
+</html>

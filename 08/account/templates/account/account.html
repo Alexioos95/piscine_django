@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Account</title>
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	</head>
+	<body>
+		<div id="account-container">
+			{% if user.is_authenticated %}
+			<p>Logged as {{ user.username }}</p>
+			<button id="logout-btn">Logout</button>
+			{% else %}
+			<form id="login-form" method="post">
+				{% csrf_token %}
+				<input type="text" name="username" placeholder="Username">
+				<input type="password" name="password" placeholder="Password">
+				<button type="submit">Login</button>
+			</form>
+			<p id="login-errors" style="color: red;"></p>
+			{% endif %}
+		</div>
+
+		<script>
+			function getCookie(name)
+			{
+				let cookieValue = null;
+				if (document.cookie && document.cookie !== "")
+				{
+					const cookies = document.cookie.split(";");
+					for (let i = 0; i < cookies.length; i++)
+					{
+						const cookie = cookies[i].trim();
+						if (cookie.substring(0, name.length + 1) === (name + "="))
+						{
+							cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+							break;
+						}
+					}
+				}
+				return (cookieValue);
+			}
+
+			$(document).ready(function() {
+				$(document).on("submit", "#login-form", function(e) {
+					e.preventDefault();
+					$.ajax({
+						type: "POST",
+						url: "/account/login/",
+						data: $(this).serialize(),
+						headers: { "X-CSRFToken": getCookie("csrftoken") },
+						success: function(data) {
+							if (data.success)
+							{
+								$("#account-container").html(`
+									<p>Logged as ${data.username}</p>
+									<button id="logout-btn">Logout</button>
+								`);
+							}
+							else
+							{
+								let errors = Object.values(data.errors).map(err => err.join(", ")).join("<br>");
+								$("#login-errors").html(errors);
+							}
+						}
+					});
+				});
+			});
+			
+			$(document).on("click", "#logout-btn", function() {
+						$.ajax({
+							type: "POST",
+							url: "/account/logout/",
+							headers: { "X-CSRFToken": getCookie("csrftoken") },
+							success: function(data) {
+								if (data.success)
+								{
+									$("#account-container").html(`
+										<form id="login-form" method="post">
+											<input type="text" name="username" placeholder="Username">
+											<input type="password" name="password" placeholder="Password">
+											<button type="submit">Login</button>
+										</form>
+										<p id="login-errors" style="color: red;"></p>
+									`);
+								}
+							}
+						});
+					});
+		</script>
+	</body>
+</html>

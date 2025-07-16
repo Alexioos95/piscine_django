@@ -1,0 +1,20 @@
+{% extends 'ex01/base.html' %}
+{% load static %}
+
+{% block title %}
+	Ex01: Template engine.
+{% endblock %}
+
+{% block style %}
+	<link rel="stylesheet" href="{% static '/ex01/style2.css' %}">
+{% endblock %}
+
+{% block content %}
+	<p>
+		Django's templates are done to separate the logic of the views from the visual of the templates.<br><br>
+		Blocks are expanded to their corresponding block value from child template. This allow templating, by having a common base, and a dynamically loaded content.<br><br>
+		For X in Y loops allow iteration.<br><br>
+		If allow conditionnal operations.<br><br>
+		Context variables are expanded to their values.<br><br>
+	</p>
+{% endblock %}

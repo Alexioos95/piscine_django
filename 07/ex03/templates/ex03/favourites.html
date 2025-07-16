@@ -1,0 +1,27 @@
+{% extends 'ex03/base.html' %}
+
+{% block title %}My favourites articles{% endblock %}
+
+{% block content %}
+<table class="table">
+	<thead class="table-light">
+		<tr>
+			<th>Title</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for fav in favourites %}
+		<tr>
+			<td>{{ fav.article.title }}</td>
+			<td><a href="{% url 'ex03:article_detail' fav.article.pk %}" class="btn btn-info btn-sm text-white">Read</a></td>
+		</tr>
+		{% empty %}
+		<tr>
+			<td></td>
+			<td>You have no favourite articles.</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% endblock %}

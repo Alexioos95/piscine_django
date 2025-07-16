@@ -1,0 +1,31 @@
+{% extends 'ex05/base.html' %}
+{% load i18n %}
+
+{% block title %}Articles{% endblock %}
+
+{% block content %}
+<table class="table">
+	<thead class="table-light">
+		<tr>
+			<th>{% trans "Title" %}</th>
+			<th>{% trans "Synopsis" %}</th>
+			<th>{% trans "Author" %}</th>
+			<th>{% trans "Created" %}</th>
+			<th>{% trans "When" %}</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for article in articles %}
+		<tr>
+			<td>{{ article.title }}</td>
+			<td>{{ article.synopsis|truncatechars:20 }}</td>
+			<td>{{ article.author.username }}</td>
+			<td>{{ article.created }}</td>
+			<td>{{ article.created|timesince }}{% trans " ago" %}</td>
+			<td><a href="{% url 'ex05:article_detail' article.pk %}" class="btn btn-info btn-sm text-white">{% trans "Read" %}</a></td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% endblock %}
